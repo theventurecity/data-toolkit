@@ -15,7 +15,7 @@ def google_authenticate():
 
 
 
-def write_to_google_sheet(dataframe, spreadsheet_key, worksheet_name, goog_creds = gc):
+def write_to_google_sheet(dataframe, spreadsheet_key, worksheet_name, goog_creds):
     sh = goog_creds.open_by_key(spreadsheet_key)
     ws = None
     worksheet_list = sh.worksheets()
