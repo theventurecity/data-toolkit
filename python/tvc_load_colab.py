@@ -22,8 +22,9 @@ def write_to_google_sheet(dataframe, spreadsheet_key, worksheet_name, goog_creds
     for worksheet in worksheet_list:
         if worksheet.title == worksheet_name:
             ws = worksheet
-            if ws is None:
-                ws = sh.add_worksheet(title = worksheet_name, rows="1", cols = "1")
+            
+    if ws is None:
+        ws = sh.add_worksheet(title = worksheet_name, rows="1", cols = "1")
 
     set_with_dataframe(ws, dataframe, row=1, col=1, include_index=False, 
                        include_column_header=True, resize=True, 
