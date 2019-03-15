@@ -25,10 +25,12 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
 ## Analysis Menu
 
-**0. Introduction to Notebooks**
+**0. Introductions to Notebooks & Google Tools**
 
-* [Google Colaboratory Basics](https://colab.research.google.com/notebooks/welcome.ipynb)
+* [Google Colaboratory Basics](https://colab.research.google.com/notebooks/welcome.ipynb) (a.k.a. "Colab")
 * [Jupyter Notebook Quickstart](https://jupyter.readthedocs.io/en/latest/content-quickstart.html)
+* [Google Sheets @ G Suite Learning Center](https://gsuite.google.com/learning-center/products/sheets/get-started/#!/)
+* [Google Data Studio Help](https://support.google.com/datastudio/answer/6283323?hl=en)
 
 **1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. Inspecting the Google Sheets and Google Data Studio pieces of the puzzle will help you understand these critical components as well.
 
@@ -37,9 +39,11 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 * Explore the [Google Sheets workbook](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) these pipelines use to store the data after it gets transformed--the "Load" step. It is read-only. Therefore, to use this pipeline on your own, you need to create your own copy of this workbook to your Google Drive account. 
 * Explore the [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
 
-**2. Mini-Pipeline** notebooks are stand-alone, "full stack" pipelines designed to teach the specifics of a particular subset of startup data analytics, carrying out each step of the Extract-Transform-Load-Visualize process along the way. In particular, each "Transform" step contains verbose, commented code and an explanation of the data transformation taking place. We suggest you review these Mini-Pipelines first before trying to implement the Full Pipeline below.
+**2. Mini-Pipeline** notebooks are stand-alone, "full stack" pipelines designed to teach the specifics of a particular subset of startup data analytics, carrying out each step of the Extract-Transform-Load-Visualize process along the way. In particular, each "Transform" step contains verbose, commented code and an explanation of the data transformation taking place. We suggest you review these Mini-Pipelines first before trying to implement the Full Pipeline below. 
 
-* The **Mini-Pipeline: MAU Growth Accounting** notebook ([GitHub]() | [Colab](https://colab.research.google.com/drive/1moHa4Mcycwsz7Fq6T_5Zou1Zunt0afiI)) aggregates DAU Decorated at a monthly level, categorizes different types of users in each month, and then uses that information to arrive at a measure for growth efficiency called the Quick Ratio. Be sure to check out our post introducing this concept, [Quick Ratio as a Shortcut to Understand Product Growth](https://medium.com/theventurecity/quick-ratio-as-a-shortcut-to-understand-product-growth-ae60212bd371). 
+**Note**: the embedded iFrame visualizations from Google Data Studio do not render in the GitHub version of the notebooks. To see the visuals, visit the Colab version of the notebook or visit the [Google Data Studio dashboard](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj).
+
+* The **Mini-Pipeline: MAU Growth Accounting** notebook ([GitHub](Mini_Pipeline_MAU_Growth_Accounting.ipynb) | [Colab](https://colab.research.google.com/drive/1moHa4Mcycwsz7Fq6T_5Zou1Zunt0afiI)) aggregates DAU Decorated at a monthly level, categorizes different types of users in each month, and then uses that information to arrive at a measure for growth efficiency called the Quick Ratio. Be sure to check out our post introducing this concept, [Quick Ratio as a Shortcut to Understand Product Growth](https://medium.com/theventurecity/quick-ratio-as-a-shortcut-to-understand-product-growth-ae60212bd371). 
 
     * Further reading: Our post on [Rolling Quick Ratios for Product Decision-Making](https://medium.com/theventurecity/rolling-quick-ratios-for-product-decision-making-ec758166a10f)
 
