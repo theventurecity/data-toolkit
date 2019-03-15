@@ -23,7 +23,7 @@ Even if you do not have a dedicated data analyst at this time—and most of earl
 
 Be sure to bookmark this page so you can stay up-to-date as we continue to deploy new features.
 
-## Analysis Menu
+## Toolkit Menu
 
 **0. Introductions to Notebooks & Google Tools**
 
