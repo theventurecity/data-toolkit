@@ -1,7 +1,7 @@
 <img src="https://theventure.city/wp-content/uploads/2017/06/Theventurecity-logoweb-1.png" >
 
 # Data Pipeline Toolkit for Early-Stage Startups
-## **A powerful compilation of free tools and custom code that any startup can adapt to turn raw data into visual insights**
+## A powerful compilation of free tools and custom code that any startup can adapt to turn raw data into visual insights
 
 There are lots of reasons why the data your startup is collecting is important: managing your team, impressing investors, delighting customers, planning for the future, etc. But which data? Where do you get it? How do you turn it from raw information into coherent story? And how can you do that on a tight budget? To answer those questions, [TheVentureCity](https://theventure.city/) has developed this toolkit for startup founders who want to supplement their gut and intuition with data-driven insights.
 
@@ -47,9 +47,9 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
     * Further reading: Our post on [Rolling Quick Ratios for Product Decision-Making](https://medium.com/theventurecity/rolling-quick-ratios-for-product-decision-making-ec758166a10f)
 
-* The **Mini-Pipeline: Cohort Analysis** notebook ([GitHub]() | [Colab](https://colab.research.google.com/drive/1oYy-wJl6VZFgOsv8uw7iGChQxUjrR5rf)) transforms the DAU Decorated data set into a cohort analysis dataframe to examine monthly user retention and cohort revenue LTV. Cohort *retention* metrics help us see how long users continue to use the product after the first time they use it. Good retention makes growth so much easier and efficient: newly-acquired users count toward user growth rather than merely replacing lost users. 
+* The **Mini-Pipeline: Cohort Analysis** notebook ([GitHub](Mini_Pipeline_Cohort_Analysis.ipynb) | [Colab](https://colab.research.google.com/drive/1oYy-wJl6VZFgOsv8uw7iGChQxUjrR5rf)) transforms the DAU Decorated data set into a cohort analysis dataframe to examine monthly user retention and cohort revenue LTV. Cohort *retention* metrics help us see how long users continue to use the product after the first time they use it. Good retention makes growth so much easier and efficient: newly-acquired users count toward user growth rather than having to replace lost users. 
 
-* The **Mini-Pipeline: Engagement** notebook ([GitHub]() | [Colab](https://colab.research.google.com/drive/1nznm8WRU0dJcMNAR4U5CpkHpbMI-nmWD)) shows how to transform the DAU Decorated data set into engagement dataframes to analyze a DAU Histogram, Active Days per Month over Time, and Multi-Day Users Ratio over Time. *Engagement* metrics gauge the extent to which users find value in the product by measuring the frequency with which they use it. In this way, we can use data to assess and track product-market fit, an important but tricky concept for which data helps supplement gut feel. Solid engagement sets the stage for retention over a long period of time.
+* The **Mini-Pipeline: Engagement** notebook ([GitHub](Mini_Pipeline_Engagement.ipynb) | [Colab](https://colab.research.google.com/drive/1nznm8WRU0dJcMNAR4U5CpkHpbMI-nmWD)) shows how to transform the DAU Decorated data set into engagement dataframes to analyze a DAU Histogram, Active Days per Month over Time, and Multi-Day Users Ratio over Time. *Engagement* metrics gauge the extent to which users find value in the product by measuring the frequency with which they use it. In this way, we can use data to assess and track product-market fit, an important but tricky concept for which data helps supplement gut feel. Solid engagement sets the stage for retention over a long period of time.
 
     * Further reading: Our post on [Going Beyond DAU/MAU Metrics for Growth](https://medium.com/theventurecity/going-beyond-dau-mau-metrics-for-growth-169b9eac7aec)
 
