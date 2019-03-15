@@ -25,45 +25,38 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
 ## Analysis Menu
 
-Follow the links below to access the Jupyter notebook for that topic. Feel free to jump around as you see fit, though Items 0 (Introduction to Notebooks) and 1 (Data Building Blocks) should not be missed.
-
 **0. Introduction to Notebooks**
 
 * [Google Colaboratory Basics](https://colab.research.google.com/notebooks/welcome.ipynb)
 * [Jupyter Notebook Quickstart](https://jupyter.readthedocs.io/en/latest/content-quickstart.html)
 
-**1. Data Building Blocks** — *START HERE!* Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. 
+**1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. 
 
-* Part 1: Understanding Event Logs
-* Part 2: Create the “DAU Decorated” data set
+* [Understanding Event Logs]()
+* [Create the “DAU Decorated” data set]()
+* This is a link to the [Google Sheets workbook]() these pipelines use to store the data after it gets transformed--the "Load" step. It is read-only. Therefore, to use this pipeline on your own, you need to create your own copy of this workbook to your Google Drive account. 
+* This ia a link to the [Google Data Studio]() that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
 
-**2. Retention** metrics measure how long users continue to use the product after the first time they use it. Good retention makes growth so much easier and efficient: newly-acquired users count toward user growth rather than merely replacing lost users. 
+**2. Mini-Pipeline** notebooks are stand-alone, "full stack" pipelines designed to teach the specifics of a particular subset of startup data analytics, carrying out each step of the Extract-Transform-Load-Visualize process along the way. In particular, each "Transform" step contains verbose, commented code and an explanation of the data transformation taking place. We suggest you review these Mini-Pipelines first before trying to implement the Full Pipeline below.
 
-* The **Mini-Pipelin: Cohort Analysis** notebook ([GitHub]() | [Colab]()) is a standalone pipeline that transforms raw data into a cohort analysis dataframe to examine monthly user retention and cohort revenue LTV. This notebook also contains a deep dive into how and why we calculate the DAU Decorated data set--a critical building block for all of our pipelines.
+* The **Mini-Pipeline: MAU Growth Accounting** aggregates DAU Decorated at a monthly level, categorizes different types of users in each month, and then uses that information to arrive at a measure for growth efficiency called the Quick Ratio. Be sure to check out our post introducing this concept, [Quick Ratio as a Shortcut to Understand Product Growth](https://medium.com/theventurecity/quick-ratio-as-a-shortcut-to-understand-product-growth-ae60212bd371). 
 
-**3. Engagement** metrics gauge the extent to which users find value in the product by measuring the frequency with which they use it. In this way, we can use data to assess and track product-market fit, an important but tricky concept for which data. Solid engagement sets the stage for retention over a long period of time.
+    * Further reading: Our post on [Rolling Quick Ratios for Product Decision-Making](https://medium.com/theventurecity/rolling-quick-ratios-for-product-decision-making-ec758166a10f)
 
-* The **Mini-Pipeline: Engagement** notebook ([GitHub]() | [Colab]()) is a standalone pipeline that shows you how to transform raw data into engagement dataframes to analyze a DAU Histogram, Active Days per Month over Time, and Multi-Day Users Ratio over Time
-* Further reading: Our post on [Going Beyond DAU/MAU Metrics for Growth](https://medium.com/theventurecity/going-beyond-dau-mau-metrics-for-growth-169b9eac7aec)
+* The **Mini-Pipeline: Cohort Analysis** notebook ([GitHub]() | [Colab]()) transforms the DAU Decorated data set into a cohort analysis dataframe to examine monthly user retention and cohort revenue LTV. Cohort *retention* metrics help us see how long users continue to use the product after the first time they use it. Good retention makes growth so much easier and efficient: newly-acquired users count toward user growth rather than merely replacing lost users. 
 
-**4. Growth Accounting** combines user and/or revenue growth with retention to arrive at a measure for growth efficiency called the Quick Ratio. Be sure to check out our post introducing this concept, [Quick Ratio as a Shortcut to Understand Product Growth](https://medium.com/theventurecity/quick-ratio-as-a-shortcut-to-understand-product-growth-ae60212bd371). 
+* The **Mini-Pipeline: Engagement** notebook ([GitHub]() | [Colab]()) shows how to transform the DAU Decorated data set into engagement dataframes to analyze a DAU Histogram, Active Days per Month over Time, and Multi-Day Users Ratio over Time. *Engagement* metrics gauge the extent to which users find value in the product by measuring the frequency with which they use it. In this way, we can use data to assess and track product-market fit, an important but tricky concept for which data helps supplement gut feel. Solid engagement sets the stage for retention over a long period of time.
 
-* Part 1: User Quick Ratios
-* Part 2: Revenue Quick Ratios
-* Part 3: Rolling Quick Ratios
-* Part 4: Segmented Quick Ratios
-* Further reading: Our post on [Rolling Quick Ratios for Product Decision-Making](https://medium.com/theventurecity/rolling-quick-ratios-for-product-decision-making-ec758166a10f)
+    * Further reading: Our post on [Going Beyond DAU/MAU Metrics for Growth](https://medium.com/theventurecity/going-beyond-dau-mau-metrics-for-growth-169b9eac7aec)
 
-**5. Cohort Analysis** helps to measure not only user retention, but also customer long-term value (CLTV).
-
-* Part 1: Cumulative Cohort CLTV
-* Part 2: Cumulative Cohort CLTV Trends
-* Part 3: Segmented Cohort Analysis
-
-**6. Visual Dashboards** help make a store and point 
-
-* Part 1: Integrating Python with Google Sheets
-* Part 2: Google Data Studio visualizations from Google Sheets
+**3. Full Pipeline** -- This notebook ([GitHub]() | [Colab]()) combines the logic from each of the mini-pipelines into one. Instead of using verbose, inline code, it leverages TheVentureCity's python libraries to perform the Transform step. If you want to run a complete data pipeline for your business:
+1. Create a copy of this notebook in your Google Drive account
+1. Configure it to point to...
+    1. Your raw data source
+    1. Google Sheets workbook
+    1. Google Data Studio
+1. Configure Google Data Studio to point to the Google Sheets workbook
+1. ...and give it a try!
 
 <img src="img/Meme-DA.jpg" alt="Isn't data analytics just analyzing data?" style="width: 400px;"/>
 
@@ -74,4 +67,4 @@ Follow the links below to access the Jupyter notebook for that topic. Feel free 
 
 ## Notes
 
-With the Google Colaboratory option there is no need to install any software. The other option is to install [Jupyter](https://jupyter.org/) (Python 3.6) and the relevant libraries on your local machine. Whatever your comfort level with Python, we encourage you learn by doing: hit Shift-Enter to run each cell and see what happens. If you want some exposure to some Python basics to supplement this toolkit, we recommend [DataCamp](https://www.datacamp.com/), which has some excellent free courses, including a [tutorial on Jupyter notebooks](https://www.datacamp.com/community/tutorials/tutorial-jupyter-notebook). Where possible, we are including sample Excel spreadsheets; however, most of the time, Python is the superior tool because it can handle larger data sets more easily and perform loops.
+With the Google Colaboratory option there is no need to install any software. The other option is to install [Jupyter](https://jupyter.org/) (Python 3.6) and the relevant libraries on your local machine. Whatever your comfort level with Python, we encourage you learn by doing: hit Shift-Enter to run each cell and see what happens. If you want some exposure to some Python basics to supplement this toolkit, we recommend [DataCamp](https://www.datacamp.com/), which has some excellent free courses, including a [tutorial on Jupyter notebooks](https://www.datacamp.com/community/tutorials/tutorial-jupyter-notebook). 
