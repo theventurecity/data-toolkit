@@ -17,7 +17,7 @@ The main engine orchestrating the ETL pipeline is Python code. It is available i
 * Notebooks using [Google Colaboratory](https://colab.research.google.com/notebooks/welcome.ipynb)'s cloud Jupyter runtime environment (see below for more notes); and 
 * .py files in our GitHub repository
 
-Each notebook contains raw Python code and/or imports our .py files to illustrate a specific type of analysis as listed below. By combining working Python code with a discussion of how it works and why it is important, these notebooks help you learn on your own by analyzing your startup's data. Once the data is extracted and transformed in memory (the "E" and "T" in "ETL"), the Python code loads it into Google Sheets (the "L" step). From there, Google Data Studio connects to Google Sheets to enable visualization and dissemination of the transformed data.
+Each notebook contains raw Python code and/or imports our .py files to illustrate a specific type of analysis as listed below. By combining working Python code with a discussion of how it works and why it is important, these notebooks help you learn on your own by analyzing your startup's data. Once the data is extracted and transformed in memory (the "E" and "T" in "ETL"), the Python code loads it into [Google Sheets](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) (the "L" step). From there, [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) connects to Google Sheets to enable visualization and dissemination of the transformed data.
 
 Even if you do not have a dedicated data analyst at this time—and most of early-stage teams of 5-10 members don't have that role—make sure there is somebody on your engineering team who is tasked with instrumentation and analysis. It is this person who most needs to review this toolkit. The Python code is fully commented and ready to run as-is in the cloud notebook environment. When you have adapted it to your business and are ready to automate your pipeline, you'll need to convert the notebooks to .py files scheduled to run at regular intervals.
 
@@ -32,8 +32,8 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
 **1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. Inspecting the Google Sheets and Google Data Studio pieces of the puzzle will help you understand these critical components as well.
 
-* Understanding Event Logs ([GitHub]() | [Colab](https://colab.research.google.com/drive/1GiaZdWy3PDevWYLolFfGgb9Bp_7Yjvgv))
-* Create the “DAU Decorated” data set ([GitHub]() | [Colab]())
+* Understanding Event Logs ([GitHub](Understanding_Event_Logs.ipynb) | [Colab](https://colab.research.google.com/drive/1GiaZdWy3PDevWYLolFfGgb9Bp_7Yjvgv))
+* Create the “DAU Decorated” data set ([GitHub](Create_the_DAU_Decorated_Data_Set.ipynb) | [Colab](https://colab.research.google.com/drive/12uehG2EcIqxcTazKs-pNQRTQSckllOmE))
 * Explore the [Google Sheets workbook](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) these pipelines use to store the data after it gets transformed--the "Load" step. It is read-only. Therefore, to use this pipeline on your own, you need to create your own copy of this workbook to your Google Drive account. 
 * Explore the [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
 
