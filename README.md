@@ -32,7 +32,7 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
 **1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. Inspecting the Google Sheets and Google Data Studio pieces of the puzzle will help you understand these critical components as well.
 
-* Understanding Event Logs ([GitHub]() | [Colab](https://colab.research.google.com/drive/1GiaZdWy3PDevWYLolFfGgb9Bp_7Yjvgv))
+* Understanding Event Logs ([GitHub]() | [Colab](https://colab.research.google.com/drive/1GiaZdWy3PDevWYLolFfGgb9Bp_7Yjvgv){:target="_blank"})
 * Create the “DAU Decorated” data set ([GitHub]() | [Colab]())
 * Explore the [Google Sheets workbook](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) these pipelines use to store the data after it gets transformed--the "Load" step. It is read-only. Therefore, to use this pipeline on your own, you need to create your own copy of this workbook to your Google Drive account. 
 * Explore the [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
