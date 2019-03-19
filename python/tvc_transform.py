@@ -483,8 +483,8 @@ def calc_user_ga_ratios(user_xga_df,
         ratio_df = ratio_df.append(this_ratio_df)
     
     # The Growth Threshold and growth rate target are constants for display purposes
-    this_ratio_df['Growth Threshold'] = 1.0
-    this_ratio_df[cgr_col + ' Target'] = 0.1
+    ratio_df['Growth Threshold'] = 1.0
+    ratio_df[cgr_col + ' Target'] = 0.1
     
     return ratio_df
 
