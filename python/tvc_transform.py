@@ -211,7 +211,7 @@ def increment_period(xau_grouping_col, time_period):
 ### create_xau_decorated_df is a generic function that allows us to find WAU
 ### Decorated or MAU Decorated from a DAU Decorated based on the time period
 ### that gets passed in
-def create_xau_decorated_df(dau_decorated_df, time_period):
+def create_xau_decorated_df(dau_decorated_df, time_period, use_segment):
     
     # These are the parameters that are set from the get_time_period_dict 
     # function above
@@ -228,6 +228,8 @@ def create_xau_decorated_df(dau_decorated_df, time_period):
     # the user_id, and the first_period_col (either "first_week" or "first_month")
     # For each user_id, there is one and only one first_period_col
     groupby_cols = [grouping_col, 'user_id', first_period_col]
+    if use_segment: 
+        groupby_cols = groupby_cols + ['segment']
         
     # Start by making a copy of the dataframe that gets passed in so as not to
     # affect the original
@@ -248,6 +250,9 @@ def create_xau_decorated_df(dau_decorated_df, time_period):
     
     # Select a subset of the resultant columns from the groupby to output
     output_cols = [grouping_col, 'user_id', 'inc_amt', first_period_col, 'Next_' + grouping_col]
+    if use_segment:
+        output_cols = output_cols + ['segment']
+
     xau = xau[output_cols]
     
     # Return the resultant dataset
