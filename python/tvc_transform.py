@@ -304,11 +304,32 @@ def calc_rev_qr(row, new_col = 'new_revenue', res_col = 'resurrected_revenue',
 ### This takes a dataframe of transactions grouped by a particular date period
 ### and returns active, retained, new, resurrected, and churned users for that
 ### time period
+### Reminder: the .t suffix stands for "this month" and .l stands for "last month"
 def calc_user_ga(x, grouping_col, first_period_col):
+  
+    # au = Active Users = the count of unique user_id's this period
     au = x.loc[~x[grouping_col + '.t'].isnull(), 'user_id'].nunique() 
-    ret_users = x.loc[(x['inc_amt.t'] > 0) & (x['inc_amt.l'] > 0), 'user_id'].nunique()
-    new_users = x.loc[x[first_period_col + '.t'] == x[grouping_col + '.t'], 'user_id'].nunique()
-    res_users = x.loc[(x[first_period_col + '.t'] != x[grouping_col + '.t']) & ~(x['inc_amt.l'] > 0), 'user_id'].nunique()
+    
+    # ret_users = retained_users = unique user_ids that transacted this period 
+    # and last
+    ret_users = (x.loc[(x['inc_amt.t'] > 0) & (x['inc_amt.l'] > 0), 
+                       'user_id']
+                 .nunique())
+    
+    # new_users = unique user_id's for whom  this period's first_period_col is 
+    # the same as this period's grouping_col
+    new_users = (x.loc[x[first_period_col + '.t'] == x[grouping_col + '.t'], 
+                       'user_id']
+                 .nunique())
+    
+    # res_users = resurrected users = transacted this period but not last, and
+    # this is not their first period to transact
+    res_users = (x.loc[(x[first_period_col + '.t'] != x[grouping_col + '.t']) & 
+                       ~(x['inc_amt.l'] > 0), 
+                       'user_id']
+                 .nunique())
+    
+    # churned_users = transacted last period but not this one
     churned_users = -1 * x.loc[~(x['inc_amt.t'] > 0), 'user_id'].nunique()
 
     vals = [au, ret_users, new_users, res_users, churned_users]
@@ -349,6 +370,7 @@ def create_growth_accounting_dfs(xau_decorated_df,
                                  use_segment = False,
                                  keep_last_period = True, 
                                  date_limit = None,
+                                 add_hours = False,
                                  include_zero_inc = False):
     print('Creating Growth Accounting dataframes')
     time_fields = get_time_period_dict(time_period)
@@ -406,9 +428,10 @@ def create_growth_accounting_dfs(xau_decorated_df,
     if not include_zero_inc:
         rev_xga = rev_xga[rev_xga[frequency + ' Revenue'] > 0]
     
-    user_xga[grouping_col] = pd.to_datetime(pd.PeriodIndex(user_xga[grouping_col]).start_time) + timedelta(hours = 7) 
-    rev_xga[grouping_col] = pd.to_datetime(pd.PeriodIndex(rev_xga[grouping_col]).start_time) + timedelta(hours = 7)
-    
+    if add_hours:
+        user_xga[grouping_col] = pd.to_datetime(pd.PeriodIndex(user_xga[grouping_col]).start_time) + timedelta(hours = 7) 
+        rev_xga[grouping_col] = pd.to_datetime(pd.PeriodIndex(rev_xga[grouping_col]).start_time) + timedelta(hours = 7)
+        
     if not keep_last_period:
         user_xga = user_xga[:-1]
         rev_xga = rev_xga[:-1]
@@ -425,7 +448,10 @@ def create_growth_accounting_dfs(xau_decorated_df,
 ### Using the numbers in the "final" growth accounting dataframe, calculate
 ### the number of users at the beginning of the period (BOP), the  
 ### period-over-period user retention ratio, and the user quick ratio
-def calc_user_ga_ratios(user_xga_df, time_period, use_segment = False, growth_rate_periods = 12):
+def calc_user_ga_ratios(user_xga_df, 
+                        time_period, 
+                        use_segment = False, 
+                        growth_rate_periods = 12):
     
     time_fields = get_time_period_dict(time_period)
     frequency = time_fields['frequency']
@@ -455,6 +481,10 @@ def calc_user_ga_ratios(user_xga_df, time_period, use_segment = False, growth_ra
                      this_ratio_df[frequency + ' Active Users'].shift(growth_rate_periods)), 1/growth_rate_periods)-1
         
         ratio_df = ratio_df.append(this_ratio_df)
+    
+    # The Growth Threshold and growth rate target are constants for display purposes
+    this_ratio_df['Growth Threshold'] = 1.0
+    this_ratio_df[cgr_col + ' Target'] = 0.1
     
     return ratio_df
 
