@@ -465,9 +465,9 @@ def calc_user_ga_ratios(user_xga_df,
     ratio_df = pd.DataFrame()    
     for s in segments:
         if s != 'All':
-            this_ratio_df = user_xga_df.copy().loc[user_xga_df['segment'] == s].reset_index()
+            this_ratio_df = user_xga_df.copy().loc[user_xga_df['segment'] == s].reset_index(drop=True)
         else:
-            this_ratio_df = user_xga_df.copy().reset_index()
+            this_ratio_df = user_xga_df.copy().reset_index(drop=True)
             this_ratio_df['segment'] = s
             
         this_ratio_df['Users BOP'] = this_ratio_df[frequency + ' Active Users'].shift(1)
