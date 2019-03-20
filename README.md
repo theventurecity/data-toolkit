@@ -53,7 +53,7 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
     * Further reading: Our post on [Going Beyond DAU/MAU Metrics for Growth](https://medium.com/theventurecity/going-beyond-dau-mau-metrics-for-growth-169b9eac7aec)
 
-**3. Full Pipeline** -- This notebook ([GitHub]() | [Colab]()) combines the logic from each of the mini-pipelines into one. Instead of using verbose, inline code, it leverages TheVentureCity's python libraries to perform the Transform step. If you want to run a complete data pipeline for your business:
+**3. Full Pipeline** -- This notebook ([GitHub](Full_Pipeline.ipynb) | [Colab](https://colab.research.google.com/drive/11xU3q7kTRs7hBbd5uSmiZeChKwaev88A)) combines the logic from each of the mini-pipelines into one. Instead of using verbose, inline code, it leverages TheVentureCity's python libraries to perform the Transform step. If you want to run a complete data pipeline for your business:
 1. Create a copy of this notebook in your Google Drive account
 1. Configure it to point to...
     1. Your raw data source
