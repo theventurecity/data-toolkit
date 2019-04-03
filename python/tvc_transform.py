@@ -558,11 +558,12 @@ def consolidate_all_ga(xau_decorated_df,
                        keep_last_period = True, 
                        date_limit = None,
                        include_zero_inc = False,
+                       add_hours = False,
                        use_standard_col_names = True):
     
     user_ga, rev_ga = create_growth_accounting_dfs(xau_decorated_df, time_period, 
                                                    use_segment, keep_last_period, 
-                                                   date_limit, include_zero_inc)
+                                                   date_limit, add_hours, include_zero_inc)
     user_ga_with_ratios = calc_user_ga_ratios(user_ga, time_period, use_segment, growth_rate_periods)
     rev_ga_with_ratios = calc_rev_ga_ratios(rev_ga, time_period, use_segment, growth_rate_periods)
     all_ga_df = consolidate_ga_dfs(user_ga_with_ratios, rev_ga_with_ratios, time_period)
@@ -592,7 +593,6 @@ def consolidate_all_ga(xau_decorated_df,
             if new_c in mapping:
                 new_c = mapping[new_c]
             new_all_ga_cols.append(new_c)
-        print(new_all_ga_cols)
         all_ga_df.columns = new_all_ga_cols
     
     return all_ga_df
@@ -790,7 +790,7 @@ def create_xau_cohort_df(xau_decorated_df,
             if new_c in mapping:
                 new_c = mapping[new_c]
             new_xau_cols.append(new_c)
-        print(new_xau_cols)
+        
         xau_d.columns = new_xau_cols
 
     
