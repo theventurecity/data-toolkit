@@ -59,7 +59,7 @@ For a Python script that uses Google Service Account authentication, have a look
 1. Create a copy of this script and [config.ini](python/config.ini) in your own runtime environment
 1. Configure it to point to...
     1. Your raw data source (you may need to do an SQL query)
-    1. Google Sheets workbook, using the Service Account method
+    1. Google Sheets workbook, using the Service Account method. For more on how to do that, visit these instructions: [Google Service Account Setup](Google_Service_Account_Setup.md)
 1. Configure Google Data Studio to point to the Google Sheets workbook
 1. ...and give it a try!
 
