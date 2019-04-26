@@ -13,8 +13,10 @@ To set up a service account and download a credentials file, follow these instru
 
 <img src="https://s3.amazonaws.com/com.twilio.prod.twilio-docs/original_images/google-developer-console.gif" >
 
-1. Copy the JSON file to your code directory and refer to it by name from [config.ini](python/config.ini)
+1. Copy the JSON file to the same folder as your Python script and refer to it by name from [config.ini](python/config.ini) as the GOOGLE_CREDENTIALS_FILE variable
+1. While you're there, also write the Google Sheets spreadsheet key to [config.ini](python/config.ini) as the GOOGLE_SPREADSHEET_KEY variable. Get it from the URL of the Google Sheet. Example: https://docs.google.com/spreadsheets/d/**16VZFD8XNWbc2mjnzj4jbYiRf3GCu-CDcAq4CVi4RXB0**/edit#gid=0
 1. Find the client_email inside the json file. Back in the Google Sheets spreadsheet that you want to write to, click the Share button in the top right, paste the client email into the People field to give it edit rights, and hit Send (see second gif below)
+
 
 <img src="https://s3.amazonaws.com/com.twilio.prod.twilio-docs/original_images/share-google-spreadshet.gif" >
 
