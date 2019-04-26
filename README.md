@@ -53,12 +53,13 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
     * Further reading: Our post on [Going Beyond DAU/MAU Metrics for Growth](https://medium.com/theventurecity/going-beyond-dau-mau-metrics-for-growth-169b9eac7aec)
 
-**3. Full Pipeline** -- This notebook ([GitHub](Full_Pipeline.ipynb) | [Colab](https://colab.research.google.com/drive/11xU3q7kTRs7hBbd5uSmiZeChKwaev88A)) combines the logic from each of the mini-pipelines into one. Instead of using verbose, inline code, it leverages TheVentureCity's python libraries to perform the Transform step. If you want to run a complete data pipeline for your business:
-1. Create a copy of this notebook in your Google Drive account
+**3. Full Pipeline** -- This notebook ([GitHub](Full_Pipeline.ipynb) | [Colab](https://colab.research.google.com/drive/11xU3q7kTRs7hBbd5uSmiZeChKwaev88A)) combines the logic from each of the mini-pipelines into one. Instead of using verbose, inline code, it leverages TheVentureCity's python libraries to perform the Transform step. 
+
+For a Python script that uses Google Service Account authentication, have a look at [servbiz_example_pipeline.py](python/servbiz_example_pipeline.py), which does a loop to handle both an unsegmented and a segmented scenario. If you want to run a complete data pipeline for your business:
+1. Create a copy of this script and [config.ini](python/config.ini) in your own runtime environment
 1. Configure it to point to...
-    1. Your raw data source
-    1. Google Sheets workbook
-    1. Google Data Studio
+    1. Your raw data source (you may need to do an SQL query)
+    1. Google Sheets workbook, using the Service Account method
 1. Configure Google Data Studio to point to the Google Sheets workbook
 1. ...and give it a try!
 
