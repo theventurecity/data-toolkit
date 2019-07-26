@@ -1,4 +1,4 @@
-<img src="https://theventure.city/wp-content/uploads/2017/06/Theventurecity-logoweb-1.png" >
+<img src="https://theventure.city/wp-content/themes/theventurecity/_framework/assets/images/common/tvc_logo.svg" >
 
 # Data Pipeline Toolkit for Early-Stage Startups
 ## A powerful compilation of free tools and custom code that any startup can adapt to turn raw data into visual insights
