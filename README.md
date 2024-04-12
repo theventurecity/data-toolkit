@@ -1,4 +1,4 @@
-<img src="img/Horizontal Lockup_JungleGreen.png" alt='TheVentureCity' style="width: 400px;>
+<img src="img/Horizontal Lockup_JungleGreen.png" alt='TheVentureCity' style="width: 400px;">
 
 # Data Pipeline Toolkit for Early-Stage Startups
 ## A powerful compilation of free tools and custom code that any startup can adapt to turn raw data into visual insights
