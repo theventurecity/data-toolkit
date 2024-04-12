@@ -1166,11 +1166,9 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
     # users with the same number of active periods as part of the same bin.
     print(xau_grouped.columns)
     if active_col_name in xau_grouped.columns:
-        counts_df = (xau_grouped[active_col_name]
-                    .value_counts()
-                    .reset_index()
-                    .rename(columns={'index': active_bin_name, active_col_name: 'user_count'})
-                    .sort_values(active_bin_name, ascending=True))
+        counts_df = (xau_grouped[active_col_name].value_counts().reset_index())
+                    # .rename(columns={'index': active_bin_name, active_col_name: 'user_count'})
+                    # .sort_values(active_bin_name, ascending=True))
     else:
         print(f"Column {active_col_name} not found in DataFrame.")
         # Handle the error or raise an exception
