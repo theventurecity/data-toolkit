@@ -767,12 +767,17 @@ def create_xau_cohort_df(xau_decorated_df,
         # If the time period is a month, and we have recent periods back to 
         # exclude (an input parameter), we use this code to exclude those 
         # periods from xau_d. The periods back is measured from TODAY's date.
+        # if time_period == 'month':
+        #     td = pd.DateOffset(months = recent_periods_back_to_exclude)
+        # elif time_period == 'week':
+        #     td = timedelta(weeks = recent_periods_back_to_exclude)
         if time_period == 'month':
-            td = pd.DateOffset(months = recent_periods_back_to_exclude)
+            td = pd.DateOffset(months=recent_periods_back_to_exclude)
         elif time_period == 'week':
-            td = timedelta(weeks = recent_periods_back_to_exclude)
+            td = pd.DateOffset(weeks=recent_periods_back_to_exclude)
         
-        last_period = pd.to_datetime(datetime.today() - td).to_period(period_abbr)
+        # last_period = pd.to_datetime(datetime.today() - td).to_period(period_abbr)
+        last_period = pd.to_datetime(datetime.today() - td).to_period(period_abbr).start_time
         xau_d = xau_d.loc[xau_d[grouping_col] <= last_period]
         
         # If we want to add seven hours to the first_period_col and grouping_col
