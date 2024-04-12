@@ -480,7 +480,9 @@ def calc_user_ga_ratios(user_xga_df,
         this_ratio_df[cgr_col] = np.power((this_ratio_df[frequency + ' Active Users'] / \
                      this_ratio_df[frequency + ' Active Users'].shift(growth_rate_periods)), 1/growth_rate_periods)-1
         
-        ratio_df = ratio_df.append(this_ratio_df)
+        # ratio_df = ratio_df.append(this_ratio_df)
+        ratio_df = pd.concat([ratio_df, this_ratio_df], ignore_index=True)
+
     
     # The Growth Threshold and growth rate target are constants for display purposes
     ratio_df['Growth Threshold'] = 1.0
