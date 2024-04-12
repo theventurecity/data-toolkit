@@ -480,7 +480,6 @@ def calc_user_ga_ratios(user_xga_df,
         this_ratio_df[cgr_col] = np.power((this_ratio_df[frequency + ' Active Users'] / \
                      this_ratio_df[frequency + ' Active Users'].shift(growth_rate_periods)), 1/growth_rate_periods)-1
         
-        # ratio_df = ratio_df.append(this_ratio_df)
         ratio_df = pd.concat([ratio_df, this_ratio_df], ignore_index=True)
 
     
@@ -648,9 +647,18 @@ def create_xau_cohort_df(xau_decorated_df,
     # Set the since_col variable to say "Months Since First" or "Weeks Since First"
     since_col = '%ss Since First' % unit
     
-    # Calculate the value in the since_col to be the number of periods between
-    # the current period and the user's first period
-    xau_d[since_col] = xau_d[grouping_col] - xau_d[first_period_col]
+    # # Calculate the value in the since_col to be the number of periods between
+    # # the current period and the user's first period
+    # xau_d[since_col] = xau_d[grouping_col] - xau_d[first_period_col]
+    
+    # Convert periods to datetime (start of the period) if not already done
+    xau_d[grouping_col] = pd.to_datetime(xau_d[grouping_col].dt.start_time)
+    xau_d[first_period_col] = pd.to_datetime(xau_d[first_period_col].dt.start_time)
+
+    # Calculate the difference in terms of the number of 'unit' between the dates
+    timedelta_str = f"timedelta64[{period_abbr}]"
+    xau_d[since_col] = (xau_d[grouping_col] - xau_d[first_period_col]).astype(timedelta_str).astype(int)
+
     
     # Since we are aggregating it all by the cohort of users that started in a
     # particular period, we set the group by columns for the first aggregation
