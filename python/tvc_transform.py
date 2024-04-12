@@ -1155,6 +1155,7 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
                                            use_segment = use_segment
                                            )
     
+    print("xau_grouped structure :\n", xau_grouped.head())
 
     # Define three column names based on the time period parameter
     active_col_name = f'active_{time_period}s'
