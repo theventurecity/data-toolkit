@@ -1155,13 +1155,11 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
                                            use_segment = use_segment
                                            )
     
-    print(xau_grouped.columns)
-    print(xau_grouped.head)
-    
+
     # Define three column names based on the time period parameter
-    active_col_name = 'active_' + time_period + 's'
-    active_bin_name = active_col_name + '_bin'
-    avg_active_name = 'avg_' + time_period + 's_active'
+    active_col_name = f'active_{time_period}s'
+    active_bin_name = f'{active_col_name}_bin'
+    avg_active_name = f'avg_{time_period}s_active'
     
     # Create a dataframe called counts_df that counts the values of the 
     # column that holds the number of active periods. In this way it counts all
@@ -1173,6 +1171,8 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
                                        active_col_name : 'user_count'})
                     .sort_values(active_bin_name, ascending=True)
                     )
+    print(counts_df.columns)
+    print(counts_df.head)
 
     # Create a blank dataframe with bin names and zeros to handle the cases
     # where a bin has no users
