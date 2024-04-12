@@ -545,7 +545,7 @@ def calc_rev_ga_ratios(rev_xga_df, time_period, use_segment = False, growth_rate
         this_ratio_df[cgr_col] = np.power((this_ratio_df[frequency + ' Revenue'] / \
                 this_ratio_df[frequency + ' Revenue'].shift(growth_rate_periods)), 1/growth_rate_periods)-1
         
-        ratio_df = ratio_df.append(this_ratio_df)
+        ratio_df = pd.concat([ratio_df, this_ratio_df])
     
     return ratio_df
 
@@ -989,7 +989,7 @@ def calc_rolling_qr_window(dau_decorated_df,
         d2 = d.date()
         print(window_days, d2)
         this_window = calc_ga_for_window(dau_decorated_df, d2, window_days, use_segment)
-        rolling_qr_df = rolling_qr_df.append(this_window)
+        rolling_qr_df = pd.concat([rolling_qr_df, this_window])
         
     rolling_qr_df['window_end_date'] = pd.to_datetime(rolling_qr_df['window_end_date'])
     return rolling_qr_df
@@ -1331,7 +1331,7 @@ def create_xau_window_df(dau_decorated_df,
                                                     window_days = window_days, 
                                                     breakouts = breakouts,
                                                     use_segment = use_segment)
-        rolling_engagement_df = rolling_engagement_df.append(this_window)
+        rolling_engagement_df = pd.concat([rolling_engagement_df, this_window])
         i+=1
     print(('Finished processing all %s ' + time_period + 's!') % total_dates)
     
