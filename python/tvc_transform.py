@@ -684,12 +684,10 @@ def create_xau_cohort_df(xau_decorated_df,
     # Calculate the difference in terms of the number of 'unit' between the dates
     # timedelta_str = f"timedelta64[{period_abbr}]"
     # xau_d[since_col] = (xau_d[grouping_col] - xau_d[first_period_col]).astype(timedelta_str).astype(int)
-    xau_d[since_col] = [date_difference(g, f) for g, f in zip(xau_d[grouping_col], 
-                                                              xau_d[first_period_col], 
-                                                              time_period)
-                                                              ]
+    xau_d[since_col] = [date_difference(g, f, time_period) for g, f in zip(xau_d[grouping_col], 
+                                                                           xau_d[first_period_col] 
+                                                                           )]
 
-    
     # Since we are aggregating it all by the cohort of users that started in a
     # particular period, we set the group by columns for the first aggregation
     # as the first_period_col, grouping_col, and since_col
