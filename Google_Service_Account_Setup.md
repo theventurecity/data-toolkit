@@ -1,4 +1,4 @@
-<img src="https://theventure.city/wp-content/themes/theventurecity/_framework/assets/images/common/tvc_logo.svg" >
+<img src="img/tvc_horiz_junglegreen.png" alt='TheVentureCity' style="width: 400px;">
 
 # Set up a Google Service Account
 ## A two-minute primer to configuration your Google account and Google Sheets to enable writing the results of the Python scripts with server-side authentication
