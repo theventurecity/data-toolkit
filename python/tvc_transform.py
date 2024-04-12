@@ -54,27 +54,43 @@ def get_time_period_dict(time_period):
 
 from dateutil.relativedelta import relativedelta
 
+# def date_difference(start, end, timeframe):
+#     """
+#     Calculates the difference between two dates in the specified timeframe ('day', 'week', 'month', 'year').
+
+#     Args:
+#     start (datetime): The start date.
+#     end (datetime): The end date.
+#     timeframe (str): The unit of time to measure the difference ('day', 'week', 'month', 'year').
+
+#     Returns:
+#     int: The difference between the dates in the specified timeframe.
+#     """
+#     delta = relativedelta(end, start)
+#     if timeframe == 'day':
+#         return (end - start).days  # More direct and accurate for day calculations
+#     elif timeframe == 'week':
+#         return (end - start).days // 7  # Convert days to weeks
+#     elif timeframe == 'month':
+#         return delta.years * 12 + delta.months  # Convert total months from years and months
+#     elif timeframe == 'year':
+#         return delta.years  # Directly get the difference in years
+#     else:
+#         raise ValueError("Invalid timeframe specified. Use 'day', 'week', 'month', or 'year'.")
 def date_difference(start, end, timeframe):
-    """
-    Calculates the difference between two dates in the specified timeframe ('day', 'week', 'month', 'year').
+    """Ensure both start and end are converted to Timestamp if they are Periods."""
+    start = pd.to_datetime(start) if isinstance(start, pd.Period) else start
+    end = pd.to_datetime(end) if isinstance(end, pd.Period) else end
 
-    Args:
-    start (datetime): The start date.
-    end (datetime): The end date.
-    timeframe (str): The unit of time to measure the difference ('day', 'week', 'month', 'year').
-
-    Returns:
-    int: The difference between the dates in the specified timeframe.
-    """
     delta = relativedelta(end, start)
     if timeframe == 'day':
-        return (end - start).days  # More direct and accurate for day calculations
+        return (end - start).days
     elif timeframe == 'week':
-        return (end - start).days // 7  # Convert days to weeks
+        return (end - start).days // 7
     elif timeframe == 'month':
-        return delta.years * 12 + delta.months  # Convert total months from years and months
+        return delta.years * 12 + delta.months
     elif timeframe == 'year':
-        return delta.years  # Directly get the difference in years
+        return delta.years
     else:
         raise ValueError("Invalid timeframe specified. Use 'day', 'week', 'month', or 'year'.")
 
