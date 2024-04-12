@@ -1169,9 +1169,13 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
         counts_df = (xau_grouped[active_col_name]
                      .value_counts()
                      .reset_index()
-                     .rename(columns={'index': active_bin_name, active_col_name: 'user_count'})
-                     # .sort_values(active_bin_name, ascending=True)
                      )
+        counts_df.columns = [active_bin_name, 'user_count', 'count']  # Directly set new names
+        counts_df = counts_df.sort_values(by=active_bin_name, ascending=True)
+
+                    #  .rename(columns={'index': active_bin_name, active_col_name: 'user_count'})
+                    #  # .sort_values(active_bin_name, ascending=True)
+                    #  )
     else:
         print(f"Column {active_col_name} not found in DataFrame.")
         # Handle the error or raise an exception
@@ -1186,7 +1190,10 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
             
     # This is like an SQL union that appends the two data frames together. Then
     # we take the max value in each bin
-    hist_df = counts_df.append(blank_hist_df).groupby(active_bin_name, as_index=False).max()
+    hist_df = (pd.concat([counts_df, blank_hist_df]).
+               groupby(active_bin_name, as_index=False)
+               .max()
+               )
 
     # Calculate the weighted average active days in the 28-day period and add
     # a column to hold that constant
