@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from datetime import timedelta
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import math
 
 ### For discrete time period calculations, this helps set the variable names
@@ -51,6 +52,31 @@ def get_time_period_dict(time_period):
     
     return time_fields
 
+from dateutil.relativedelta import relativedelta
+
+def date_difference(start, end, timeframe):
+    """
+    Calculates the difference between two dates in the specified timeframe ('day', 'week', 'month', 'year').
+
+    Args:
+    start (datetime): The start date.
+    end (datetime): The end date.
+    timeframe (str): The unit of time to measure the difference ('day', 'week', 'month', 'year').
+
+    Returns:
+    int: The difference between the dates in the specified timeframe.
+    """
+    delta = relativedelta(end, start)
+    if timeframe == 'day':
+        return (end - start).days  # More direct and accurate for day calculations
+    elif timeframe == 'week':
+        return (end - start).days // 7  # Convert days to weeks
+    elif timeframe == 'month':
+        return delta.years * 12 + delta.months  # Convert total months from years and months
+    elif timeframe == 'year':
+        return delta.years  # Directly get the difference in years
+    else:
+        raise ValueError("Invalid timeframe specified. Use 'day', 'week', 'month', or 'year'.")
 
 
 # The create_dau_df function takes as inputs a dataframe of transactions and 
@@ -656,8 +682,12 @@ def create_xau_cohort_df(xau_decorated_df,
     xau_d[first_period_col] = pd.to_datetime(xau_d[first_period_col].dt.start_time)
 
     # Calculate the difference in terms of the number of 'unit' between the dates
-    timedelta_str = f"timedelta64[{period_abbr}]"
-    xau_d[since_col] = (xau_d[grouping_col] - xau_d[first_period_col]).astype(timedelta_str).astype(int)
+    # timedelta_str = f"timedelta64[{period_abbr}]"
+    # xau_d[since_col] = (xau_d[grouping_col] - xau_d[first_period_col]).astype(timedelta_str).astype(int)
+    xau_d[since_col] = [date_difference(g, f) for g, f in zip(xau_d[grouping_col], 
+                                                              xau_d[first_period_col], 
+                                                              time_period)
+                                                              ]
 
     
     # Since we are aggregating it all by the cohort of users that started in a
