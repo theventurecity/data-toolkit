@@ -82,7 +82,6 @@ def date_difference(start, end, timeframe):
     start = pd.to_datetime(start) if isinstance(start, pd.Period) else start
     end = pd.to_datetime(end) if isinstance(end, pd.Period) else end
 
-    print('start', start, 'end', end, timeframe)
     delta = relativedelta(end, start)
     if timeframe == 'day':
         return (end - start).days
