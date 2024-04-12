@@ -1,7 +1,7 @@
 <img src="img/tvc_horiz_junglegreen.png" alt='TheVentureCity' style="width: 400px;">
 
 # Set up a Google Service Account
-## A two-minute primer to configuration your Google account and Google Sheets to enable writing the results of the Python scripts with server-side authentication
+## A two-minute primer to configure your Google account and Google Sheets to enable writing the results of the Python scripts with server-side authentication
 
 To set up a service account and download a credentials file, follow these instructions (steps 1-6 are shown in the gif below):
 1. Go to the [Google APIs Console](https://console.developers.google.com) (see first gif below for steps 1-6)
