@@ -1169,12 +1169,13 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
     if active_col_name in xau_grouped.columns:
         counts_df = (xau_grouped[active_col_name]
                      .value_counts()
-                     .reset_index()
+                    #  .reset_index()
                      )
-        print("DataFrame structure post reset_index:\n", counts_df.head())
+        print("DataFrame structure pre reset_index:\n", counts_df.head())
 
-        counts_df.columns = [active_bin_name, 'user_count', 'count']  # Directly set new names
+        counts_df.columns = [active_bin_name, 'user_count']  # Directly set new names
         counts_df = counts_df.sort_values(by=active_bin_name, ascending=True)
+        print("DataFrame structure post everything:\n", counts_df.head())
 
                     #  .rename(columns={'index': active_bin_name, active_col_name: 'user_count'})
                     #  # .sort_values(active_bin_name, ascending=True)
