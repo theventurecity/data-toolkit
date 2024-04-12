@@ -1163,7 +1163,6 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
     # Create a dataframe called counts_df that counts the values of the 
     # column that holds the number of active periods. In this way it counts all
     # users with the same number of active periods as part of the same bin.
-    print(xau_grouped.columns)
     if active_col_name in xau_grouped.columns:
         counts_df = (xau_grouped[active_col_name]
                      .value_counts()
