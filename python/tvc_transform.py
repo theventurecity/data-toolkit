@@ -52,31 +52,7 @@ def get_time_period_dict(time_period):
     
     return time_fields
 
-from dateutil.relativedelta import relativedelta
 
-# def date_difference(start, end, timeframe):
-#     """
-#     Calculates the difference between two dates in the specified timeframe ('day', 'week', 'month', 'year').
-
-#     Args:
-#     start (datetime): The start date.
-#     end (datetime): The end date.
-#     timeframe (str): The unit of time to measure the difference ('day', 'week', 'month', 'year').
-
-#     Returns:
-#     int: The difference between the dates in the specified timeframe.
-#     """
-#     delta = relativedelta(end, start)
-#     if timeframe == 'day':
-#         return (end - start).days  # More direct and accurate for day calculations
-#     elif timeframe == 'week':
-#         return (end - start).days // 7  # Convert days to weeks
-#     elif timeframe == 'month':
-#         return delta.years * 12 + delta.months  # Convert total months from years and months
-#     elif timeframe == 'year':
-#         return delta.years  # Directly get the difference in years
-#     else:
-#         raise ValueError("Invalid timeframe specified. Use 'day', 'week', 'month', or 'year'.")
 def date_difference(start, end, timeframe):
     """Ensure both start and end are converted to Timestamp if they are Periods."""
     start = pd.to_datetime(start) if isinstance(start, pd.Period) else start
@@ -689,17 +665,12 @@ def create_xau_cohort_df(xau_decorated_df,
     # Set the since_col variable to say "Months Since First" or "Weeks Since First"
     since_col = '%ss Since First' % unit
     
-    # # Calculate the value in the since_col to be the number of periods between
-    # # the current period and the user's first period
-    # xau_d[since_col] = xau_d[grouping_col] - xau_d[first_period_col]
-    
     # Convert periods to datetime (start of the period) if not already done
     xau_d[grouping_col] = pd.to_datetime(xau_d[grouping_col].dt.start_time)
     xau_d[first_period_col] = pd.to_datetime(xau_d[first_period_col].dt.start_time)
 
-    # Calculate the difference in terms of the number of 'unit' between the dates
-    # timedelta_str = f"timedelta64[{period_abbr}]"
-    # xau_d[since_col] = (xau_d[grouping_col] - xau_d[first_period_col]).astype(timedelta_str).astype(int)
+    # Calculate the value in the since_col to be the number of periods between
+    # the current period and the user's first period
     xau_d[since_col] = [date_difference(g, f, time_period) for g, f in zip(xau_d[first_period_col], xau_d[grouping_col])]
 
     # Since we are aggregating it all by the cohort of users that started in a
@@ -764,16 +735,11 @@ def create_xau_cohort_df(xau_decorated_df,
         # If the time period is a month, and we have recent periods back to 
         # exclude (an input parameter), we use this code to exclude those 
         # periods from xau_d. The periods back is measured from TODAY's date.
-        # if time_period == 'month':
-        #     td = pd.DateOffset(months = recent_periods_back_to_exclude)
-        # elif time_period == 'week':
-        #     td = timedelta(weeks = recent_periods_back_to_exclude)
         if time_period == 'month':
             td = pd.DateOffset(months=recent_periods_back_to_exclude)
         elif time_period == 'week':
             td = pd.DateOffset(weeks=recent_periods_back_to_exclude)
         
-        # last_period = pd.to_datetime(datetime.today() - td).to_period(period_abbr)
         last_period = pd.to_datetime(datetime.today() - td).to_period(period_abbr).start_time
         xau_d = xau_d.loc[xau_d[grouping_col] <= last_period]
         
@@ -1188,6 +1154,9 @@ def calc_xau_hist(dau_decorated, time_period, last_date, window_days, use_segmen
                                            breakouts = [],
                                            use_segment = use_segment
                                            )
+    
+    print(xau_grouped.columns)
+    print(xau_grouped.head)
     
     # Define three column names based on the time period parameter
     active_col_name = 'active_' + time_period + 's'
