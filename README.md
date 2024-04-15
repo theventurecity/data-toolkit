@@ -57,7 +57,8 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 
 **3A. Full Pipeline for Daily Use**
 For a Python script that uses Google Service Account authentication, have a look at [servbiz_example_pipeline.py](python/servbiz_example_pipeline.py), which does a loop to handle both an unsegmented and a segmented scenario. If you want to run a complete data pipeline for your business:
-1. Create a copy of this script and [config.ini](python/config.ini) in your own runtime environment
+1. Set up your own runtime Python environment, being sure to run `pip install -r requirements.txt` to ensure that these scripts have the right version of Pandas and other libraries for them to work
+1. Create a copy of this script and [config.ini](python/config.ini) in your runtime environment
 1. Configure it to point to...
     1. Your raw data source (you may need to do an SQL query)
     1. Google Sheets workbook, using the Service Account method. For more on how to do that, visit these instructions: [Google Service Account Setup](Google_Service_Account_Setup.md)
