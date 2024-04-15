@@ -17,7 +17,7 @@ class TVCLoad:
         # creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, 
         #                                                          scopes)
         creds = service_account.Credentials.from_service_account_file(
-           credentials_file, scopes
+           credentials_file, scopes=scopes
         )
         client = gspread.authorize(creds)
         
@@ -37,8 +37,15 @@ class TVCLoad:
       if ws is None:
         ws = sh.add_worksheet(title = worksheet_name, rows="1", cols = "1")
         
-      set_with_dataframe(ws, dataframe, row=1, col=1, include_index=False, 
-                         include_column_header=True, resize=True, allow_formulas=True)    
+      set_with_dataframe(ws, 
+                         dataframe, 
+                         row=1, 
+                         col=1,
+                         include_index=False, 
+                         include_column_header=True, 
+                         resize=True, 
+                         allow_formulas=True
+                         )    
     
 
     

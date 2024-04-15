@@ -2,7 +2,8 @@
 
 ### Import Relevant Libraries
 import os
-PYTHON_FOLDER = os.environ['PYTHON_FOLDER']  # Requires an environment variable to be preset
+# PYTHON_FOLDER = os.environ['PYTHON_FOLDER']  # Requires an environment variable to be preset
+PYTHON_FOLDER = './'
 os.chdir(PYTHON_FOLDER)
 
 import pandas as pd
