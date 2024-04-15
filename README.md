@@ -17,7 +17,7 @@ The main engine orchestrating the ETL pipeline is Python code. It is available i
 * Notebooks using [Google Colaboratory](https://colab.research.google.com/notebooks/welcome.ipynb)'s cloud Jupyter runtime environment (see below for more notes); and 
 * .py files in our GitHub repository
 
-Each notebook contains raw Python code and/or imports our .py files to illustrate a specific type of analysis as listed below. By combining working Python code with a discussion of how it works and why it is important, these notebooks help you learn on your own by analyzing your startup's data. Once the data is extracted and transformed in memory (the "E" and "T" in "ETL"), the Python code loads it into [Google Sheets](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) (the "L" step). From there, [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) connects to Google Sheets to enable visualization and dissemination of the transformed data.
+Each notebook contains raw Python code and/or imports our .py files to illustrate a specific type of analysis as listed below. By combining working Python code with a discussion of how it works and why it is important, these notebooks help you learn on your own by analyzing your startup's data. Once the data is extracted and transformed in memory (the "E" and "T" in "ETL"), the Python code loads it into [Google Sheets](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0) (the "L" step). From there, [Looker Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj) (formerly known as "Google Data Studio") connects to Google Sheets to enable visualization and dissemination of the transformed data.
 
 Even if you do not have a dedicated data analyst at this time—and most of early-stage teams of 5-10 members don't have that role—make sure there is somebody on your engineering team who is tasked with instrumentation and analysis. It is this person who most needs to review this toolkit. The Python code is fully commented and ready to run as-is in the cloud notebook environment. When you have adapted it to your business and are ready to automate your pipeline, you'll need to convert the notebooks to .py files scheduled to run at regular intervals.
 
@@ -30,18 +30,18 @@ Be sure to bookmark this page so you can stay up-to-date as we continue to deplo
 * [Google Colaboratory Basics](https://colab.research.google.com/notebooks/welcome.ipynb) (a.k.a. "Colab")
 * [Jupyter Notebook Quickstart](https://jupyter.readthedocs.io/en/latest/content-quickstart.html)
 * [Google Sheets @ G Suite Learning Center](https://gsuite.google.com/learning-center/products/sheets/get-started/#!/)
-* [Google Data Studio Help](https://support.google.com/datastudio/answer/6283323?hl=en)
+* [Looker Studio Help](https://support.google.com/datastudio/answer/6283323?hl=en)
 
-**1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. Inspecting the Google Sheets and Google Data Studio pieces of the puzzle will help you understand these critical components as well.
+**1. Data Analysis Building Blocks** — Before you can start analyzing the data, you need to understand raw event log data and how to access it. Then the raw data needs some pre-processing to convert it into a “DAU Decorated” data set, which serves as the jumping-off point for the rest of the analysis. Inspecting the Google Sheets and Looker Studio pieces of the puzzle will help you understand these critical components as well.
 
 * **Understanding Event Logs** ([GitHub](Understanding_Event_Logs.ipynb) | [Colab](https://colab.research.google.com/drive/1GiaZdWy3PDevWYLolFfGgb9Bp_7Yjvgv))
 * **Create the “DAU Decorated” data set** ([GitHub](Create_the_DAU_Decorated_Data_Set.ipynb) | [Colab](https://colab.research.google.com/drive/12uehG2EcIqxcTazKs-pNQRTQSckllOmE))
 * **Explore the [Google Sheets workbook](https://docs.google.com/spreadsheets/d/1-XnO_eWkRwX-E1fiA2Jkbe3kJvoyoPFsdeW7vnF6zS0/edit#gid=0)** these pipelines use to store the data after it gets transformed--the "Load" step. It is read-only. Therefore, to use this pipeline on your own, you need to create your own copy of this workbook to your Google Drive account. 
-* **Explore the [Google Data Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj)** that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
+* **Explore the [Looker Studio](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj)** that reads from the Google Sheets workbook to create the visualizations. It is also read-only, so create your own copy under your Google Drive account.
 
 **2. Mini-Pipeline** notebooks are stand-alone, "full stack" pipelines designed to teach the specifics of a particular subset of startup data analytics, carrying out each step of the Extract-Transform-Load-Visualize process along the way. In particular, each "Transform" step contains verbose, commented code and an explanation of the data transformation taking place. We suggest you review these Mini-Pipelines first before trying to implement the Full Pipeline below. 
 
-**Note**: the embedded iFrame visualizations from Google Data Studio do not render in the GitHub version of the notebooks. To see the visuals, visit the Colab version of the notebook or visit the [Google Data Studio dashboard](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj).
+**Note**: the embedded iFrame visualizations from Google Data Studio do not render in the GitHub version of the notebooks. To see the visuals, visit the Colab version of the notebook or visit the [Looker Studio dashboard](https://datastudio.google.com/reporting/1xjS__Q6ZUXuUUARkgRvY4spYUw1ePksV/page/ctyj).
 
 * The **Mini-Pipeline: MAU Growth Accounting** notebook ([GitHub](Mini_Pipeline_MAU_Growth_Accounting.ipynb) | [Colab](https://colab.research.google.com/drive/1moHa4Mcycwsz7Fq6T_5Zou1Zunt0afiI)) aggregates DAU Decorated at a monthly level, categorizes different types of users in each month, and then uses that information to arrive at a measure for growth efficiency called the Quick Ratio. Be sure to check out our post introducing this concept, [Quick Ratio as a Shortcut to Understand Product Growth](https://medium.com/theventurecity/quick-ratio-as-a-shortcut-to-understand-product-growth-ae60212bd371). 
 
@@ -62,7 +62,7 @@ For a Python script that uses Google Service Account authentication, have a look
 1. Configure it to point to...
     1. Your raw data source (you may need to do an SQL query)
     1. Google Sheets workbook, using the Service Account method. For more on how to do that, visit these instructions: [Google Service Account Setup](Google_Service_Account_Setup.md)
-1. Configure Google Data Studio to point to the Google Sheets workbook
+1. Configure Looker Studio to point to the Google Sheets workbook
 1. **Schedule it to run every day or week to fill your dashboard with the most up-to-date data**
 
 <img src="img/Meme-DA.jpg" alt="Isn't data analytics just analyzing data?" style="width: 400px;"/>
