@@ -2,7 +2,8 @@
 
 import gspread
 from gspread_dataframe import set_with_dataframe
-from oauth2client.service_account import ServiceAccountCredentials
+# from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2 import service_account
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets'] 
 
@@ -13,8 +14,11 @@ class TVCLoad:
 
 
     def init_gsheets_client(self, credentials_file, scopes,  **kwargs):
-        creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, 
-                                                                 scopes)
+        # creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, 
+        #                                                          scopes)
+        creds = service_account.Credentials.from_service_account_file(
+           credentials_file, scopes
+        )
         client = gspread.authorize(creds)
         
         return client

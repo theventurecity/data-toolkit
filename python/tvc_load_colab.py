@@ -1,15 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from google.colab import auth
 from google.auth import default
-# from oauth2client.client import GoogleCredentials
-
-# from google_auth_oauthlib.flow import InstalledAppFlow
-
 import gspread
 from gspread_dataframe import set_with_dataframe
-
-
 
 def google_authenticate():
     auth.authenticate_user()
@@ -17,9 +9,6 @@ def google_authenticate():
     creds, _ = default()
     gc = gspread.authorize(creds)
     return gc
-
-
-
 
 def write_to_google_sheet(dataframe, spreadsheet_key, worksheet_name, goog_creds):
     sh = goog_creds.open_by_key(spreadsheet_key)
