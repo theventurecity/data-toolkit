@@ -8,7 +8,7 @@ There are lots of reasons why the data your startup is collecting is important: 
 ## Make Your Own Copy & Learn by Doing
 
 The purpose of the toolkit is twofold: 
-1. To allow any startup to deploy an Extract-Transform-Load (ETL) pipeline that takes raw event log data as its input and feeds visual dashboards as its output. **Our intent is that you will make your own copy of these tools and use them.** If you need our help, just ask.
+1. To allow any startup to deploy an Extract-Transform-Load (ETL) pipeline that takes raw event log data as its input and feeds visual dashboards as its output. **Our intent is that you will make _your own copy_ of these tools and use them.** If you need our help, just ask.
 1. To supply context about what is happening behind the scenes by walking you through the code via Jupyter Python notebooks.
 
 <img src="img/tvc_etl_pipeline_diagram.png" alt="TVC ETL Data Analysis Pipeline" style="width: 100%;"/>
